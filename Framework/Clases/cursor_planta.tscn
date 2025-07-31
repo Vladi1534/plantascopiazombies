@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgq45kq6ak4w"]
+
+[ext_resource type="Script" uid="uid://c07i0vtivtv2r" path="res://Framework/Clases/cursor_planta.gd" id="1_jslir"]
+
+[node name="CursorPlanta" type="Node2D"]
+script = ExtResource("1_jslir")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.501961)

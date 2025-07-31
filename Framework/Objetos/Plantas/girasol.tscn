@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyvujjfq8t4jx"]
+
+[ext_resource type="PackedScene" uid="uid://cah5qwwjjcmaa" path="res://Framework/Clases/PlantaGeneracion.tscn" id="1_5en2v"]
+
+[node name="Girasol" instance=ExtResource("1_5en2v")]

@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3hg6udephmwu"]
+
+[ext_resource type="Texture2D" uid="uid://bnhv1tgaj8qtr" path="res://Assets/Sun.png" id="1_bqapn"]
+[ext_resource type="Script" uid="uid://c3katbat1u4e7" path="res://Framework/UI/hud.gd" id="1_jh4m7"]
+[ext_resource type="FontFile" uid="uid://dddsthjmti333" path="res://Assets/Fonts/Pixellari.ttf" id="2_gbpyh"]
+[ext_resource type="PackedScene" uid="uid://oygv8cxygult" path="res://Framework/UI/panel_planta.tscn" id="4_4inuc"]
+[ext_resource type="Texture2D" uid="uid://ch15g185wsryy" path="res://Assets/Sunflower-card.png" id="5_7synu"]
+[ext_resource type="Texture2D" uid="uid://nuw30i5bwbns" path="res://Assets/Peashooter-card.png" id="6_1m6np"]
+[ext_resource type="PackedScene" uid="uid://dyvujjfq8t4jx" path="res://Framework/Objetos/Plantas/girasol.tscn" id="6_fmxl4"]
+[ext_resource type="Texture2D" uid="uid://capwy8f5oi0uh" path="res://Assets/Nuez-tarjeta.png" id="7_1m6np"]
+[ext_resource type="PackedScene" uid="uid://dy7frvf8ebiyo" path="res://Framework/Objetos/Plantas/lanza_guisante.tscn" id="8_xyyku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh4m7"]
+bg_color = Color(0, 0, 0, 0.466667)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbpyh"]
+atlas = ExtResource("1_bqapn")
+region = Rect2(26.2155, -0.266417, 25.657, 25.7264)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmxl4"]
+bg_color = Color(0.47451, 0.109804, 0, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jh4m7")
+
+[node name="PanelSoles" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 3.0
+offset_right = 174.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jh4m7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelSoles"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelSoles/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_gbpyh")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelSoles/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+
+[node name="Label" type="Label" parent="PanelSoles/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_gbpyh")
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 25.0
+offset_right = 42.0
+offset_bottom = -69.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelPlanta" parent="Panel/VBoxContainer" instance=ExtResource("4_4inuc")]
+layout_mode = 2
+textura = ExtResource("5_7synu")
+planta_a_colocar = ExtResource("6_fmxl4")
+
+[node name="PanelPlanta2" parent="Panel/VBoxContainer" instance=ExtResource("4_4inuc")]
+layout_mode = 2
+textura = ExtResource("6_1m6np")
+tiempo_de_recuperacion = 3.0
+precio_soles = 100
+planta_a_colocar = ExtResource("8_xyyku")
+
+[node name="PanelPlanta3" parent="Panel/VBoxContainer" instance=ExtResource("4_4inuc")]
+layout_mode = 2
+textura = ExtResource("7_1m6np")
+tiempo_de_recuperacion = 5.0
+
+[node name="B_Cancel" type="Button" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -38.0
+offset_right = 39.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_gbpyh")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_fmxl4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fmxl4")
+text = "x"
+
+[connection signal="button_down" from="B_Cancel" to="." method="_on_b_cancel_button_down"]

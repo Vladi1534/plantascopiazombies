@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://oygv8cxygult"]
+
+[ext_resource type="Script" uid="uid://c0uri4qnjry8l" path="res://Framework/UI/panel_planta.gd" id="1_h7qab"]
+[ext_resource type="Texture2D" uid="uid://nuw30i5bwbns" path="res://Assets/Peashooter-card.png" id="1_ncbjr"]
+[ext_resource type="FontFile" uid="uid://dddsthjmti333" path="res://Assets/Fonts/Pixellari.ttf" id="2_h7qab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h7qab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncbjr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7qab"]
+bg_color = Color(0.588235, 0.741176, 0.0862745, 1)
+
+[node name="PanelPlanta" type="Panel"]
+custom_minimum_size = Vector2(30, 30)
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h7qab")
+script = ExtResource("1_h7qab")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ncbjr")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -11.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_ncbjr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h7qab")
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -23.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_h7qab")
+theme_override_font_sizes/font_size = 8
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

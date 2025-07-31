@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cowklnd2ndmce"]
+
+[ext_resource type="Texture2D" uid="uid://brofm75h5i0y0" path="res://Assets/Fondo.png" id="1_e81ty"]
+[ext_resource type="Script" uid="uid://dpoccs2ok6ses" path="res://Framework/mundo_01.gd" id="1_rtik2"]
+[ext_resource type="Texture2D" uid="uid://b2pk4fks6w22g" path="res://Assets/Cesped.png" id="2_fnjoa"]
+[ext_resource type="PackedScene" uid="uid://rgq45kq6ak4w" path="res://Framework/Clases/cursor_planta.tscn" id="5_8ognw"]
+[ext_resource type="PackedScene" uid="uid://b3hg6udephmwu" path="res://Framework/UI/hud.tscn" id="5_phghg"]
+[ext_resource type="PackedScene" uid="uid://cw7opmjesv3aj" path="res://Framework/Clases/Zombies/zombie.tscn" id="6_j4arr"]
+
+[node name="Mundo01" type="Node2D" node_paths=PackedStringArray("nodo_lineas")]
+script = ExtResource("1_rtik2")
+enemigos_por_oleada = Array[int]([2, 4, 6, 8, 10])
+tiempo_de_oleadas = Array[int]([3, 10, 10, 15, 20])
+nodo_lineas = NodePath("Lineas")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(269, 116)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_e81ty")
+
+[node name="Cesped" type="Sprite2D" parent="Fondo"]
+position = Vector2(-25, 6)
+texture = ExtResource("2_fnjoa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_phghg")]
+
+[node name="CursorPlanta" parent="." instance=ExtResource("5_8ognw")]
+z_index = 10
+position = Vector2(174, 87)
+
+[node name="Celdas" type="Node2D" parent="."]
+position = Vector2(101, 34)
+
+[node name="Plantas" type="Node2D" parent="."]
+
+[node name="Lineas" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Lineas"]
+position = Vector2(440, 55)
+
+[node name="Marker2D2" type="Marker2D" parent="Lineas"]
+position = Vector2(440, 90)
+
+[node name="Marker2D3" type="Marker2D" parent="Lineas"]
+position = Vector2(440, 132)
+
+[node name="Marker2D4" type="Marker2D" parent="Lineas"]
+position = Vector2(440, 167)
+
+[node name="Marker2D5" type="Marker2D" parent="Lineas"]
+position = Vector2(440, 203)
+
+[node name="Zombie" parent="." instance=ExtResource("6_j4arr")]
+position = Vector2(439, 61)
