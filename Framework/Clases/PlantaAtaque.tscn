@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxslvwx11xn4f"]
+[gd_scene load_steps=14 format=3 uid="uid://dxslvwx11xn4f"]
 
 [ext_resource type="Script" uid="uid://cuuk5ffscvkc7" path="res://Framework/Clases/PlantaAtaque.gd" id="1_0c7jq"]
 [ext_resource type="PackedScene" uid="uid://cpud8ei4msdy1" path="res://Framework/Objetos/bala.tscn" id="2_d067j"]
 [ext_resource type="Texture2D" uid="uid://kjxdubbvkv8m" path="res://Assets/Peashooter-idle.png" id="2_lc0q5"]
 [ext_resource type="Texture2D" uid="uid://dcs0akv5gj3nh" path="res://Assets/Peashooter-shoot.png" id="3_tofmi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lain"]
+size = Vector2(19, 20)
 
 [sub_resource type="Animation" id="Animation_d067j"]
 length = 0.001
@@ -56,62 +59,8 @@ tracks/3/keys = {
 "values": [8]
 }
 
-[sub_resource type="Animation" id="Animation_tofmi"]
-resource_name = "reposo"
-length = 0.7
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(-1.5, 0), Vector2(-1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_lc0q5")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
 [sub_resource type="Animation" id="Animation_6lain"]
-resource_name = "shoot"
+resource_name = "disparar"
 length = 0.3
 step = 0.1
 tracks/0/type = "value"
@@ -177,15 +126,96 @@ tracks/4/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_tofmi"]
+resource_name = "reposo"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(-1.5, 0), Vector2(-1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_lc0q5")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6lain"]
 _data = {
 &"RESET": SubResource("Animation_d067j"),
-&"reposo": SubResource("Animation_tofmi"),
-&"shoot": SubResource("Animation_6lain")
+&"disparar": SubResource("Animation_6lain"),
+&"reposo": SubResource("Animation_tofmi")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d067j"]
 size = Vector2(23, 29)
+
+[sub_resource type="Animation" id="Animation_88tm3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_2sfwd"]
 resource_name = "impacto"
@@ -215,33 +245,6 @@ tracks/1/keys = {
 "values": [Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_88tm3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bdrag"]
 _data = {
 &"RESET": SubResource("Animation_88tm3"),
@@ -250,16 +253,23 @@ _data = {
 
 [node name="PlantaAtaque" type="Node2D" node_paths=PackedStringArray("animacion", "animacion_impacto")]
 script = ExtResource("1_0c7jq")
-bala_instancia = ExtResource("2_d067j")
+escena_bala = ExtResource("2_d067j")
 animacion = NodePath("AnimationPlayer")
 animacion_impacto = NodePath("AnimacionImpacto")
-
-[node name="Timer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lc0q5")
 offset = Vector2(0, -10)
 hframes = 8
+
+[node name="DetectorRango" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorRango"]
+position = Vector2(22.5, -3)
+shape = SubResource("RectangleShape2D_6lain")
+debug_color = Color(1, 0.0121103, 0.0171039, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -271,10 +281,10 @@ position = Vector2(12, -9)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1.5, -0.5)
+position = Vector2(2, -3)
 shape = SubResource("RectangleShape2D_d067j")
 debug_color = Color(3.99485e-06, 0.531399, 3.85046e-07, 0.419608)
 
@@ -283,4 +293,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_bdrag")
 }
 
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectorRango" to="." method="_on_detector_rango_body_entered"]
+[connection signal="body_exited" from="DetectorRango" to="." method="_on_detector_rango_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

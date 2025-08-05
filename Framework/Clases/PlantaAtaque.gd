@@ -1,39 +1,80 @@
+# Archivo: PlantaAtaque.gd
+
 class_name PlantaAtaque
 extends PlantaBasica
 
-# Estadisticas
+# --- VARIABLES ---
+@export var escena_bala: PackedScene
 
-@export var daño_por_disparo : float = 25
-@export var tiempo_de_disparo : float = 1.0
- 
-# Disparo
+@onready var temporizador_disparo: Timer = $Timer
+@onready var punto_disparo: Marker2D = $Marker2D
+@onready var forma_colision: CollisionShape2D = $DetectorRango/CollisionShape2D
 
-var zombie_al_alcance := true
-@export var bala_instancia : PackedScene
+var zombies_en_rango: Array = []
 
-
-@onready var timer: Timer = $Timer
-@onready var marker_2d: Marker2D = $Marker2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+# --- FUNCIONES DE GODOT ---
 func _ready():
-	ini_planta()
-	timer.wait_time = tiempo_de_disparo
-	timer.timeout.connect(disparar)
+	# Conectamos el timer al disparo
+	temporizador_disparo.timeout.connect(disparar)
 	
-	timer.start()
+	# Ajustamos el rango tan pronto como la planta aparece.
+	ajustar_rango_ataque()
+	
+	# Habilitamos la detección ahora que todo está listo.
+	forma_colision.disabled = false
+	
+	# --- NUEVA LÍNEA: INICIAMOS LA ANIMACIÓN DE REPOSO ---
+	# Esto evita que la planta se quede "congelada" al ser plantada.
+	animacion.play("reposo") # Asegúrate de tener una animación llamada "reposo"
 
+
+# --- LÓGICA DE ATAQUE ---
 func disparar():
-	# Validar si la planta puede disparar
-	if zombie_al_alcance:
-		animation_player.play("shoot", -1, 0.5, false)
+	if not zombies_en_rango.is_empty():
+		animacion.play("disparar") 
+		var nueva_bala = escena_bala.instantiate()
+		
+		# Añadimos la bala a la escena principal
+		get_tree().root.add_child(nueva_bala)
+		nueva_bala.global_position = punto_disparo.global_position
+		
+		# --- LÍNEA MODIFICADA ---
+		# Ahora la planta configura la bala directamente
+		nueva_bala.iniciar(Vector2.RIGHT)
 
-func iniciar_bala():
-	var bala : Bala = bala_instancia.instantiate()
-	get_tree().current_scene.add_child(bala)
-	bala.global_position = marker_2d.global_position
+# --- FUNCIÓN PARA AJUSTAR EL RANGO ---
+func ajustar_rango_ataque():
+	var nodos_limite = get_tree().get_nodes_in_group("limite_jardin")
+	if nodos_limite.is_empty():
+		print("Error: No se encontró el nodo 'LimiteJardin' en el grupo 'limite_jardin'.")
+		return
+	var limite_jardin = nodos_limite[0]
+
+	var limite_x = limite_jardin.global_position.x
+	var inicio_x = punto_disparo.global_position.x
+	
+	var largo_rango = limite_x - inicio_x
+	
+	if largo_rango < 0:
+		largo_rango = 0
+		
+	forma_colision.shape.size.y = 30 
+	forma_colision.shape.size.x = largo_rango
+	
+	forma_colision.position.x = largo_rango / 2.0
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "shoot":
-		animation_player.play("reposo")
+# --- SEÑALES DEL DETECTOR ---
+func _on_DetectorRango_body_entered(body: Node2D):
+	if body is Zombie and not zombies_en_rango.has(body):
+		zombies_en_rango.append(body)
+		if temporizador_disparo.is_stopped():
+			disparar()
+			temporizador_disparo.start()
+
+func _on_DetectorRango_body_exited(body: Node2D):
+	if body is Zombie and zombies_en_rango.has(body):
+		zombies_en_rango.erase(body)
+		if zombies_en_rango.is_empty():
+			temporizador_disparo.stop()
+			animacion.play("reposo")

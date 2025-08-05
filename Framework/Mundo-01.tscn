@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://b2pk4fks6w22g" path="res://Assets/Cesped.png" id="2_fnjoa"]
 [ext_resource type="PackedScene" uid="uid://rgq45kq6ak4w" path="res://Framework/Clases/cursor_planta.tscn" id="5_8ognw"]
 [ext_resource type="PackedScene" uid="uid://b3hg6udephmwu" path="res://Framework/UI/hud.tscn" id="5_phghg"]
-[ext_resource type="PackedScene" uid="uid://cw7opmjesv3aj" path="res://Framework/Clases/Zombies/zombie.tscn" id="6_j4arr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phghg"]
+size = Vector2(24.5, 193)
 
 [node name="Mundo01" type="Node2D" node_paths=PackedStringArray("nodo_lineas")]
 script = ExtResource("1_rtik2")
@@ -38,19 +40,31 @@ position = Vector2(101, 34)
 [node name="Lineas" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Lineas"]
-position = Vector2(440, 55)
+position = Vector2(420, 64)
 
 [node name="Marker2D2" type="Marker2D" parent="Lineas"]
-position = Vector2(440, 90)
+position = Vector2(423, 98)
 
 [node name="Marker2D3" type="Marker2D" parent="Lineas"]
-position = Vector2(440, 132)
+position = Vector2(423, 140)
 
 [node name="Marker2D4" type="Marker2D" parent="Lineas"]
-position = Vector2(440, 167)
+position = Vector2(425, 173)
 
 [node name="Marker2D5" type="Marker2D" parent="Lineas"]
-position = Vector2(440, 203)
+position = Vector2(424, 214)
 
-[node name="Zombie" parent="." instance=ExtResource("6_j4arr")]
-position = Vector2(439, 61)
+[node name="Zombies" type="Node2D" parent="."]
+
+[node name="LimiteJardin" type="Marker2D" parent="." groups=["limite_jardin"]]
+position = Vector2(400, 118)
+
+[node name="ZonaCasa" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaCasa"]
+position = Vector2(55.75, 126)
+shape = SubResource("RectangleShape2D_phghg")
+debug_color = Color(0.39253, 0.498048, 0.922032, 0.42)
+
+[connection signal="body_entered" from="ZonaCasa" to="." method="_on_zona_casa_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3hg6udephmwu"]
+[gd_scene load_steps=14 format=3 uid="uid://b3hg6udephmwu"]
 
 [ext_resource type="Texture2D" uid="uid://bnhv1tgaj8qtr" path="res://Assets/Sun.png" id="1_bqapn"]
 [ext_resource type="Script" uid="uid://c3katbat1u4e7" path="res://Framework/UI/hud.gd" id="1_jh4m7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dyvujjfq8t4jx" path="res://Framework/Objetos/Plantas/girasol.tscn" id="6_fmxl4"]
 [ext_resource type="Texture2D" uid="uid://capwy8f5oi0uh" path="res://Assets/Nuez-tarjeta.png" id="7_1m6np"]
 [ext_resource type="PackedScene" uid="uid://dy7frvf8ebiyo" path="res://Framework/Objetos/Plantas/lanza_guisante.tscn" id="8_xyyku"]
+[ext_resource type="PackedScene" uid="uid://boob5tcs50q3p" path="res://Framework/Clases/PlantaDefensa.tscn" id="10_xyyku"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh4m7"]
 bg_color = Color(0, 0, 0, 0.466667)
@@ -108,6 +109,7 @@ planta_a_colocar = ExtResource("8_xyyku")
 layout_mode = 2
 textura = ExtResource("7_1m6np")
 tiempo_de_recuperacion = 5.0
+planta_a_colocar = ExtResource("10_xyyku")
 
 [node name="B_Cancel" type="Button" parent="."]
 custom_minimum_size = Vector2(20, 20)

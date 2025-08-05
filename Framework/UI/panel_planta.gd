@@ -16,5 +16,5 @@ func _ready():
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("click_izquierdo"):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		GameManager.planta_seleccionada(self)

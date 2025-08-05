@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://565ftm4oar7t"]
+
+[ext_resource type="Texture2D" uid="uid://cow0oksdg3jos" path="res://Assets/PC _ Computer - Plants vs. Zombies - Plants - Snow Pea.png" id="1_hd4do"]
+
+[node name="PlantaLGCongelante" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hd4do")
+hframes = 2

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Framework/Clases/Global/global.gd"
-GameManager="*res://Framework/Clases/Global/game_manager.gd"
+GameManager="*res://Framework/Clases/Global/game_manager.tscn"
 
 [display]
 
@@ -50,6 +50,7 @@ click_derecho={
 2d_physics/layer_1="General"
 2d_physics/layer_2="Plantas"
 2d_physics/layer_3="Zombies"
+2d_physics/layer_4="CasaFin"
 
 [rendering]
 

@@ -69,6 +69,33 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umq4j"]
 radius = 12.0
 
+[sub_resource type="Animation" id="Animation_88tm3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_2sfwd"]
 resource_name = "impacto"
 length = 0.2
@@ -97,33 +124,6 @@ tracks/1/keys = {
 "values": [Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_88tm3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bdrag"]
 _data = {
 &"RESET": SubResource("Animation_88tm3"),
@@ -132,6 +132,7 @@ _data = {
 
 [node name="PlantaGeneracion" type="Node2D" node_paths=PackedStringArray("animacion", "animacion_impacto")]
 script = ExtResource("1_s7xul")
+tiempo_de_generacion = 10.0
 escena_sol = ExtResource("2_umq4j")
 animacion = NodePath("AnimationPlayer")
 animacion_impacto = NodePath("AnimacionImpacto")
@@ -153,7 +154,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(2, 1)
+position = Vector2(1, -12)
 shape = SubResource("CapsuleShape2D_umq4j")
 debug_color = Color(3.99485e-06, 0.531399, 3.85046e-07, 0.419608)
 
