@@ -386,6 +386,3 @@ debug_color = Color(0, 0.631652, 0.459917, 0.42)
 libraries = {
 &"": SubResource("AnimationLibrary_5dw0u")
 }
-
-[connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]
-[connection signal="area_exited" from="Detector" to="." method="_on_detector_area_exited"]

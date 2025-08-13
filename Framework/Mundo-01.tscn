@@ -9,11 +9,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phghg"]
 size = Vector2(24.5, 193)
 
-[node name="Mundo01" type="Node2D" node_paths=PackedStringArray("nodo_lineas")]
+[node name="Mundo01" type="Node2D"]
 script = ExtResource("1_rtik2")
-enemigos_por_oleada = Array[int]([2, 4, 6, 8, 10])
-tiempo_de_oleadas = Array[int]([3, 10, 10, 15, 20])
-nodo_lineas = NodePath("Lineas")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 position = Vector2(269, 116)
@@ -66,5 +63,9 @@ collision_mask = 0
 position = Vector2(55.75, 126)
 shape = SubResource("RectangleShape2D_phghg")
 debug_color = Color(0.39253, 0.498048, 0.922032, 0.42)
+
+[node name="Proyectiles" type="Node2D" parent="."]
+
+[node name="Soles" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="ZonaCasa" to="." method="_on_zona_casa_body_entered"]

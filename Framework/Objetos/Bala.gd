@@ -1,5 +1,3 @@
-# Archivo: Bala.gd
-
 class_name Bala
 extends Area2D
 
@@ -8,13 +6,18 @@ extends Area2D
 
 var direccion: Vector2 = Vector2.RIGHT
 
+func _ready():
+	# Conexión de la señal para detectar colisiones.
+	body_entered.connect(_on_body_entered)
+	# Temporizador para que la bala se autodestruya si no golpea nada.
+	get_tree().create_timer(3.0).timeout.connect(queue_free)
+
 func _physics_process(delta: float) -> void:
 	global_position += direccion * velocidad * delta
 
-func iniciar(dir: Vector2):
+# Función para ser llamada por la planta que la dispara.
+func setup(dir: Vector2):
 	direccion = dir
-	var timer = get_tree().create_timer(3.0)
-	timer.timeout.connect(queue_free)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Zombie:
